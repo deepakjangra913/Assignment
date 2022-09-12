@@ -12,6 +12,7 @@ import com.deepak.assignment.R
 import com.deepak.assignment.databinding.ItemLayoutTrendingRepoBinding
 import com.deepak.assignment.models.trending_repo.TrendingRepoModel
 
+//This adapter is used to reflect the data on Recyclerview of Trending Repos
 class TrendingRepoAdapter(private val context: Context,val list: MutableList<TrendingRepoModel.Item>) : RecyclerView.Adapter<TrendingRepoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(

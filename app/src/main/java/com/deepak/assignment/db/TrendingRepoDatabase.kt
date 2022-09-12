@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.deepak.assignment.models.trending_repo.TrendingRepoModel
 
+/* This class is used to get the instance of Dao */
 @Database(entities = [TrendingRepoModel.Item::class], version = 1)
 abstract class TrendingRepoDatabase : RoomDatabase() {
 

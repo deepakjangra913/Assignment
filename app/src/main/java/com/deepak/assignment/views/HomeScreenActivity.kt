@@ -18,8 +18,12 @@ import com.deepak.assignment.models.trending_repo.TrendingRepoModel
 import com.deepak.assignment.view_model.HomeScreenViewModel
 import com.deepak.assignment.view_model.HomeViewModelFactory
 
+/* This activity is the main Activity
+that shows the UI to the user */
+
 class HomeScreenActivity : AppCompatActivity() {
 
+    //Declaration of variables
     private lateinit var viewModel: HomeScreenViewModel
     private val context: Activity = this
     private lateinit var binding: ActivityMainBinding
@@ -31,9 +35,14 @@ class HomeScreenActivity : AppCompatActivity() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //create binding object to bind the views with activity
         binding = DataBindingUtil.setContentView(context, R.layout.activity_main)
+
+        //To handle the views of Error Layout
         errorLayoutBinding = binding.viewError
 
+        //Initialize Adapter and set on Recyclerview
         adapter = TrendingRepoAdapter(context, list)
         binding.rvTrendingRepo.adapter = adapter
 
@@ -45,42 +54,65 @@ class HomeScreenActivity : AppCompatActivity() {
             HomeViewModelFactory(repositoryClass)
         )[HomeScreenViewModel::class.java]
 
-        //Api call
+        //Shimmer effect visible
         binding.shimmer.visibility = View.VISIBLE
         binding.shimmer.startShimmerAnimation()
 
+        //Api call
+        //To show shimmer effect because api response is very fast
         Handler().postDelayed(Runnable {
-            viewModel.getRepositoryList()
-        },2000)
+            viewModel.getRepositoryList(false)
+        },1000)
 
+
+        //Observe the changes of Data
         viewModel.repositoryList.observe(this) {
-            Log.e(TAG, " response: $it")
+            list.clear()
             binding.shimmer.stopShimmerAnimation()
             binding.shimmer.visibility = View.GONE
-            if (it.isNullOrEmpty()) {
+
+            // if error is not Null then show error layout
+            if (it.getError() != null) {
+                binding.tvNoData.visibility = View.GONE
                 errorLayoutBinding.viewError.visibility = View.VISIBLE
                 binding.rvTrendingRepo.visibility = View.GONE
                 binding.swipeRefresh.isEnabled = false
             } else {
+
+                //Response case
                 binding.swipeRefresh.isEnabled = true
                 if (binding.swipeRefresh.isRefreshing) binding.swipeRefresh.isRefreshing = false
-                binding.rvTrendingRepo.visibility = View.VISIBLE
-                list.addAll(it)
-                adapter.notifyDataSetChanged()
+
+                if(it.getTrendingRepos().isNullOrEmpty()){
+                    binding.tvNoData.visibility = View.VISIBLE
+                    binding.rvTrendingRepo.visibility = View.GONE
+                }else{
+                    binding.rvTrendingRepo.visibility = View.VISIBLE
+                    binding.tvNoData.visibility = View.GONE
+                    list.addAll(it.getTrendingRepos() as MutableList<TrendingRepoModel.Item>)
+                    adapter.notifyDataSetChanged()
+                }
+
             }
         }
 
+        //Click on Retry
         errorLayoutBinding.btnRetry.setOnClickListener {
             errorLayoutBinding.viewError.visibility = View.GONE
             binding.shimmer.visibility = View.VISIBLE
             binding.shimmer.startShimmerAnimation()
+
+            //To show shimmer effect because api response is very fast
             Handler().postDelayed(Runnable {
-                viewModel.getRepositoryList()
-            },2000)
+                viewModel.getRepositoryList(false)
+            },1000)
+
         }
 
+
+        //Pull to refresh
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.getRepositoryList()
+            viewModel.getRepositoryList(true)
         }
     }
 }

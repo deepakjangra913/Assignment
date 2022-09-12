@@ -6,6 +6,7 @@ import retrofit2.http.GET
 
 interface ApiInterface {
 
+    //Api endpoints
     @GET("search/repositories?q=stars")
     suspend fun getTrendingRepositories() : Response<TrendingRepoModel>
 

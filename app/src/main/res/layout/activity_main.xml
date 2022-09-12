@@ -111,6 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/rvTrendingRepo" />
 
@@ -120,6 +121,21 @@
             layout="@layout/layout_api_error"
             android:visibility="gone"
             android:id="@+id/viewError" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/tvNoData"
+            android:textSize="14sp"
+            android:visibility="gone"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/roboto_medium"
+            android:text="No data found"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
