@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/circle_gray.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/ic_broken_image.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/loading_img.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/rounded_btn_green.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/drawable/rounded_circle_red.xml" value="0.1695" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/layout/item_layout_trending_adapter.xml" value="0.253125" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/layout/item_layout_trending_repo.xml" value="0.4991482112436116" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/layout/layout_api_error.xml" value="0.176" />
+        <entry key="..\:/Deepak/Assignment/app/src/main/res/layout/shimmer_placeholder.xml" value="0.41797432239657634" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
